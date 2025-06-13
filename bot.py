@@ -3,9 +3,9 @@ from types import SimpleNamespace
 from bs4 import BeautifulSoup
 import requests
 
-token = "your_token"
+token = "8043474609:AAFDR3E6FMod7qzmyel1AUg86o2bMln6LLg"
 bot = telebot.TeleBot(token)
-wh_id = ['example_id']
+wh_id = ['2042899865']
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -76,6 +76,14 @@ def art_find(message):
                 bot.send_message(message.chat.id, " История цен пуста или в неверном формате.")
         else:
             bot.send_message(message.chat.id, " Не удалось получить историю цен.")
+        reviews_url = f"https://card.wb.ru/cards/v2/detail?appType=1&curr=rub&dest=269&spp=30&hide_dtype=13&ab_testing=false&lang=ru&nm=93106698;{art}"
+        response_3 = requests.get(reviews_url)
+        if response_3.status_code == 200:
+            data_3 = response_3.json()
+            bot.send_message(message.chat.id, f" Количество отзывов: {data_3['data']['products'][0]['feedbacks']}")
+            bot.send_message(message.chat.id, f" Средняя оценка: {data_3['data']['products'][0]['reviewRating']}")
+        else:
+            bot.send_message(message.chat.id, " Не удалось получить отзывы.")
     else:
         print("UNAUTHORIZED:", message.chat.id)
         bot.send_message(message.chat.id, "You are not authorized to use this bot.")
