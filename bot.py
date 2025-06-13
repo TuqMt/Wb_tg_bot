@@ -3,9 +3,9 @@ from types import SimpleNamespace
 from bs4 import BeautifulSoup
 import requests
 
-token = "8043474609:AAFDR3E6FMod7qzmyel1AUg86o2bMln6LLg"
+token = "your_token"
 bot = telebot.TeleBot(token)
-wh_id = ['2042899865']
+wh_id = ['example_id']
 
 @bot.message_handler(commands=['start'])
 def start(message):
