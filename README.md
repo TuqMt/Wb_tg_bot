@@ -27,17 +27,17 @@ Wildberries API и внутренние JSON-ресурсы
 
 ⚙️ Установка и запуск
 Клонируйте репозиторий:
-  git clone https://github.com/yourname/wb-info-bot.git
-  cd wb-info-bot
+    git clone https://github.com/yourname/wb-info-bot.git
+    cd wb-info-bot
   
 Установите зависимости:
-  pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Создайте config.py файл:
   # config.py
-  wh_id = ['123456789', '987654321']  # Разрешённые ID пользователей
+    wh_id = ['123456789', '987654321']  # Разрешённые ID пользователей
   
-  exchange_rate = 5.5  # Курс рубля к тенге (обновляйте при необходимости)
+    exchange_rate = 5.5  # Курс рубля к тенге (обновляйте при необходимости)
 
   
 Запуск бота:
