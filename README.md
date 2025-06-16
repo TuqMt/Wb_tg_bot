@@ -27,7 +27,9 @@ Wildberries API и внутренние JSON-ресурсы
 
 ⚙️ Установка и запуск
 Клонируйте репозиторий:
+
     git clone https://github.com/yourname/wb-info-bot.git
+    
     cd wb-info-bot
   
 Установите зависимости:
