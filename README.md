@@ -33,6 +33,7 @@ Wildberries API и внутренние JSON-ресурсы
     cd wb-info-bot
   
 Установите зависимости:
+
     pip install -r requirements.txt
 
 Создайте config.py файл:
