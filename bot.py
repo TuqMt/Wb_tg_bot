@@ -2,10 +2,11 @@ import telebot
 from types import SimpleNamespace
 from bs4 import BeautifulSoup
 import requests
+import config
 
-token = ""
+token = "8043474609:AAFDR3E6FMod7qzmyel1AUg86o2bMln6LLg"
 bot = telebot.TeleBot(token)
-wh_id = ['2042899865']
+wh_id = config.wh_id  
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -51,7 +52,7 @@ def art_find(message):
             for item in data_2:
                 try:
                     rub_price = item["price"]["RUB"] // 100 
-                    exchange_rate = 6.4
+                    exchange_rate = config.exchange_rate
                     tg_price = rub_price* exchange_rate
                     prices.append(round(tg_price))
                 except (KeyError, TypeError):
@@ -82,6 +83,14 @@ def art_find(message):
             data_3 = response_3.json()
             bot.send_message(message.chat.id, f" Количество отзывов: {data_3['data']['products'][0]['feedbacks']}")
             bot.send_message(message.chat.id, f" Средняя оценка: {data_3['data']['products'][0]['reviewRating']}")
+            url_q=f'https://questions.wildberries.ru/api/v1/questions?imtId={data.get('imt_id','не возможно получить')}&take=10&skip=0'
+            response_q = requests.get(url_q)
+            if response_q.status_code==200:
+                data_q = response_q.json()
+                for i in range(0, data_q['count']):
+                    bot.send_message(message.chat.id, f"{i}. Вопрос: {data_q['questions'][i]['text']}")
+                    bot.send_message(message.chat.id, f"{i}. Ответ: {data_q['questions'][i]['answer']['text']}")
+
         else:
             bot.send_message(message.chat.id, " Не удалось получить отзывы.")
     else:
